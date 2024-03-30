@@ -1,22 +1,10 @@
-# Docker & Docker-copose example for frontend/backend partails
+# Web Server
 
-## File structure
-
-- backend/
-- database/
-- frontend/
-- webserver/
-- .dockerignore
-- .gitignore
-- docker-compose.yml
-- Dockerfile
+Start A Containerized Web Server Project
 
 ## Build & run
 
-```bash
-# Build & run & open browser
-docker-compose up --build -d && open http://localhost/
-
-# Stop
-docker-compose stop && docker system prune <<< y
+```
+    npm start
+    npm stop
 ```
