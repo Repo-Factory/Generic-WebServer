@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+
+  database:
+    container_name: database
+    build:
+      context: ./
+      target: database_stage
+    working_dir: /home/sensor.com
+    restart: unless-stopped
+    volumes:
+      - ./database:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=sensor
+    networks:
+      - docker_network
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./
+      target: frontend_stage
+    working_dir: /home/sensor.com
+    depends_on: [ database ]
+    restart: "no"
+
+  backend:
+    container_name: backend
+    build:
+      context: ./
+      target: backend_stage
+    working_dir: /home/sensor.com
+    restart: unless-stopped
+    depends_on: [ frontend ]
+    networks:
+      - docker_network
+      
+  server:
+    container_name: server
+    build:
+      context: ./
+      target: nginx_stage
+    restart: unless-stopped
+    ports:
+      - 80:80
+    depends_on: [ "backend" ]
+    networks:
+      - docker_network
+
+networks:
+  docker_network:
