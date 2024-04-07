@@ -9,9 +9,9 @@ services:
       context: ./
       target: database_stage
     environment:
-      - POSTGRES_USER=database
-      - POSTGRES_PASSWORD=database
-      - POSTGRES_DB=database
+      - POSTGRES_USER=docker_postgress
+      - POSTGRES_PASSWORD=docker_postgress
+      - POSTGRES_DB=docker_postgress
     volumes:
       - ./db-data/:/var/lib/postgresql/data/
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -23,6 +23,8 @@ services:
     build:
       context: ./
       target: frontend_stage
+    ports:
+      - 3000:3000
     working_dir: /home
     depends_on: [ database ]
     restart: "no"
@@ -32,6 +34,8 @@ services:
     build:
       context: ./
       target: backend_stage
+    ports:
+      - 8080:8080
     working_dir: /home
     restart: unless-stopped
     depends_on: [ frontend ]

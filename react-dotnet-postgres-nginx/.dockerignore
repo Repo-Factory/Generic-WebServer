@@ -14,6 +14,8 @@ frontend/package-lock.json
 
 # APP
 frontend/dist
+backend/src/bin
+backend/src/obj
 
 # DATABASE
 database/*

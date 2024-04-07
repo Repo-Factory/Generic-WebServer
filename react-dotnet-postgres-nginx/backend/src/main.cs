@@ -1,4 +1,4 @@
-WebApplication setupApp()
+WebApplication setupApp(string[] args)
 {
     var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddEndpointsApiExplorer();
@@ -21,12 +21,12 @@ void setupEndpoints(WebApplication app)
     Endpoints.Expose.IntegerEndpoint(app);
 }
 
-void startServer()
+void startServer(string[] args)
 {
-    var app = setupApp();
+    var app = setupApp(args);
     setupHttpPipeline(app);
     setupEndpoints(app);
     app.Run();
 }
 
-startServer();
+startServer(new string[] {});
