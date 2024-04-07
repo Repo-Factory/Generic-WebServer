@@ -1,3 +1,8 @@
+# DOCKER
+.dockerignore
+Dockerfile
+docker-compose.yml
+
 # OS
 .DS_Store
 
@@ -13,4 +18,4 @@ frontend/dist
 # DATABASE
 database/*
 !database/.gitkeep
-db-data/
+
